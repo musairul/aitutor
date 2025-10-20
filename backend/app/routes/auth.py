@@ -85,7 +85,7 @@ async def login(user: UserLogin):
                 created_at=auth_response.user.created_at.isoformat() if auth_response.user.created_at else None
             )
         )
-    except Exception as e:
+    except Exception:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid credentials"
@@ -122,7 +122,7 @@ async def get_me(current_user: dict = Depends(get_current_user)):
             full_name=full_name,
             created_at=user_response.user.created_at.isoformat() if user_response.user.created_at else None
         )
-    except Exception as e:
+    except Exception:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Unauthorized"

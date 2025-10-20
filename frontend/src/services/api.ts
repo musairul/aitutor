@@ -25,16 +25,16 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Only redirect if we're not already on login/register pages
-      const currentPath = window.location.pathname;
+      const currentPath = globalThis.location.pathname;
       const isAuthPage = currentPath === '/login' || currentPath === '/register';
       
       if (!isAuthPage) {
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
-        window.location.href = '/login';
+        globalThis.location.href = '/login';
       }
     }
-    return Promise.reject(error);
+    return Promise.reject(error instanceof Error ? error : new Error(String(error)));
   }
 );
 
