@@ -1,0 +1,10 @@
+node_modules
+dist
+*.pyc
+__pycache__
+venv
+*.db
+uploads
+chroma_db
+.env
+*.log
